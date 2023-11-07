@@ -32,7 +32,6 @@ public class TestBase {
         String runModeProperties = properties.getProperty("runMode");
         String runMode = browserMaven != null ? runModeMaven : runModeProperties;
 
-
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
             MutableCapabilities capabilities = new MutableCapabilities();
@@ -61,7 +60,7 @@ public class TestBase {
                 capabilities.setCapability(CapabilityType.BROWSER_NAME, "firefox");
                 driver = new RemoteWebDriver(new URL("http://172.17.0.3:4444/wd/hub"), capabilities);
             }
-            if (browser.equalsIgnoreCase("firefox") && System.getProperty("runmode").equalsIgnoreCase("local")) {
+            if (browser.equalsIgnoreCase("firefox") && runMode.equalsIgnoreCase("local")) {
                 WebDriverManager.firefoxdriver().clearDriverCache().setup();
                 driver = new FirefoxDriver();
             }
